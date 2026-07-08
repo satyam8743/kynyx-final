@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "./Logo";
 
@@ -14,6 +14,7 @@ const navLinks = [
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <motion.header
@@ -28,16 +29,25 @@ export default function Header() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-ink/80">
-          {navLinks.map((l) => (
-            <Link
-              key={l.label}
-              to={l.to}
-              className="relative py-1 hover:text-ink transition-colors group"
-            >
-              {l.label}
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gold transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          ))}
+          {navLinks.map((l) => {
+            const isActive = location.pathname === l.to;
+            return (
+              <Link
+                key={l.label}
+                to={l.to}
+                className={`relative py-1 transition-colors group ${
+                  isActive ? "text-ink font-semibold" : "hover:text-ink text-ink/75"
+                }`}
+              >
+                {l.label}
+                <span
+                  className={`absolute bottom-0 left-0 h-[2px] bg-gold transition-all duration-300 ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-4">
@@ -78,22 +88,27 @@ export default function Header() {
             className="lg:hidden bg-paper/98 border-t border-line overflow-hidden w-full"
           >
             <div className="flex flex-col px-6 py-6 gap-4 text-base font-semibold text-ink/80">
-              {navLinks.map((l, index) => (
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  key={l.label}
-                >
-                  <Link
-                    to={l.to}
-                    onClick={() => setIsOpen(false)}
-                    className="block hover:text-gold transition-colors py-2.5 border-b border-line/30 last:border-none"
+              {navLinks.map((l, index) => {
+                const isActive = location.pathname === l.to;
+                return (
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    key={l.label}
                   >
-                    {l.label}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      to={l.to}
+                      onClick={() => setIsOpen(false)}
+                      className={`block transition-colors py-2.5 border-b border-line/30 last:border-none ${
+                        isActive ? "text-gold font-bold" : "hover:text-gold"
+                      }`}
+                    >
+                      {l.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         )}
