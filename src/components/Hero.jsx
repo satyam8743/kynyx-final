@@ -82,7 +82,6 @@ export default function Hero() {
         transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.4 }}
         className="relative"
       >
-        {/* Floating Animation for the Preview Dashboard */}
         <motion.div 
           animate={{ y: [0, -10, 0] }}
           transition={{
@@ -93,20 +92,14 @@ export default function Hero() {
           }}
           className="rounded-lg overflow-hidden border border-line shadow-2xl bg-white p-2"
         >
-          <div className="rounded-md bg-ink/95 aspect-[4/3] flex flex-col items-center justify-center p-6 relative overflow-hidden group">
-            <span className="text-white/40 text-sm mb-2 font-display">Product / dashboard preview</span>
-            
+          <div className="rounded-md bg-ink/95 aspect-[4/3] relative overflow-hidden group">
+            <img 
+              src="/images/ai-workflow.png" 
+              alt="Kynyx Dashboard Preview" 
+              className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
+            />
             {/* Visual glow element inside the preview */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-            
-            <div className="w-full max-w-[200px] h-1.5 bg-white/10 rounded-full overflow-hidden mt-4">
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={{ width: "85%" }}
-                transition={{ delay: 1, duration: 1.5, ease: "easeInOut" }}
-                className="h-full bg-gold"
-              ></motion.div>
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-gold/20 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none animate-pulse"></div>
           </div>
         </motion.div>
 

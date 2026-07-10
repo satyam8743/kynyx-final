@@ -39,9 +39,9 @@ const differentiators = [
 ];
 
 const featuredWork = [
-  { name: "AssetFlow Platform", tag: "FinTech" },
-  { name: "LuxeMarket Mobile", tag: "Ecommerce" },
-  { name: "VitalScope Pro", tag: "Healthcare" },
+  { name: "AssetFlow Platform", tag: "FinTech", img: "/images/asset-management.png" },
+  { name: "LuxeMarket Mobile", tag: "Ecommerce", img: "/images/lifestyle-commerce.png" },
+  { name: "VitalScope Pro", tag: "Healthcare", img: "/images/diagnostics.png" },
 ];
 
 const previewQuote = {
@@ -173,8 +173,12 @@ export default function Home() {
                 whileHover={{ y: -6 }}
                 className="group cursor-pointer"
               >
-                <div className="aspect-[4/3] bg-white/5 border border-white/10 rounded-md mb-5 flex items-center justify-center text-white/30 text-xs relative overflow-hidden transition-colors duration-300 group-hover:bg-white/10 group-hover:border-gold/30">
-                  <span className="group-hover:scale-110 transition-all duration-300">project preview</span>
+                <div className="aspect-[4/3] rounded-md mb-5 relative overflow-hidden bg-white/5 border border-white/10 group-hover:border-gold/30 transition-colors duration-300">
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-500"
+                  />
                   <div className="absolute bottom-0 left-0 h-[3px] bg-gold w-0 group-hover:w-full transition-all duration-300"></div>
                 </div>
                 <h3 className="font-display font-700 group-hover:text-gold transition-colors duration-300">{p.name}</h3>
